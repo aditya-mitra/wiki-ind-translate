@@ -23,7 +23,7 @@ class ProjectRetrieve(RetrieveAPIView):
     lookup_field = "pk"
 
 
-class SentenceListCreate(RetrieveUpdateAPIView):
+class SentenceReadUpdate(RetrieveUpdateAPIView):
     queryset = Sentence.objects.all()
     serializer_class = SentenceSerializer
     lookup_field = "pk"

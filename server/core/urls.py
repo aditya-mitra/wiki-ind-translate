@@ -1,6 +1,6 @@
 from django.urls import path
 
-from core.views import ProjectListCreate, ProjectRetrieve, SentenceListCreate
+from core.views import ProjectListCreate, ProjectRetrieve, SentenceReadUpdate
 
 urlpatterns = [
     path("projects", ProjectListCreate.as_view(), name="create-project-translation"),
@@ -11,7 +11,7 @@ urlpatterns = [
     ),
     path(
         "sentences/<int:pk>",
-        SentenceListCreate.as_view(),
+        SentenceReadUpdate.as_view(),
         name="sentence-read-update",
     ),
 ]
