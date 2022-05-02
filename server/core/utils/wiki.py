@@ -2,6 +2,8 @@ from typing import List, Optional
 from wikipediaapi import Wikipedia
 from pysbd import Segmenter
 
+from core.models import Sentence, Project
+
 wiki = Wikipedia("en")
 seg = Segmenter(language="en", clean=False)
 
@@ -20,11 +22,14 @@ def getWikiSummary(title: str) -> Optional[str]:
     return summary
 
 
-def getSplittedSummary(title: str) -> Optional[List[str]]:
+def getSplittedSentences(project) -> List[Sentence]:
 
-    summary = getWikiSummary(title)
+    summary = getWikiSummary(project.wiki_title)
 
     if not summary:
-        return None
+        return []
 
-    return seg.segment(summary)
+    return map(
+        lambda s: Sentence(project=project, original=s),
+        seg.segment(summary),
+    )

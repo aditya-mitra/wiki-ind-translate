@@ -6,7 +6,8 @@ from core.models import Sentence, Project
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ("wiki_title", "target_lang")
+        fields = ("id", "wiki_title", "target_lang")
+        read_only_fields = ["id"]
 
 
 class SentenceSerializer(serializers.ModelSerializer):
@@ -18,14 +19,16 @@ class SentenceSerializer(serializers.ModelSerializer):
 class SentenceOwnFieldsSerializer(SentenceSerializer):
     class Meta:
         model = Sentence
-        fields = ("original", "translated")
+        fields = ("id", "original", "translated")
+
 
 class ProjectSentenceSerializer(serializers.ModelSerializer):
     sentences = SentenceOwnFieldsSerializer(
         many=True, read_only=True, source="sentence_set"
     )
-    target_lang = serializers.CharField(source='get_target_lang_display')
+    target_lang = serializers.CharField(source="get_target_lang_display")
 
     class Meta:
         model = Project
-        fields = ("wiki_title", "target_lang", "sentences")
+        fields = ("id", "wiki_title", "target_lang", "sentences")
+        read_only_fields = ["id"]
