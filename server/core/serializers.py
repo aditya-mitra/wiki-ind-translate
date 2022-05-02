@@ -13,17 +13,17 @@ class ProjectSerializer(serializers.ModelSerializer):
 class SentenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sentence
-        fields = ("project", "original", "translated")
+        fields = ("id", "project", "original", "translated")
 
 
-class SentenceOwnFieldsSerializer(SentenceSerializer):
+class SentenceForeignSerializer(SentenceSerializer):
     class Meta:
         model = Sentence
         fields = ("id", "original", "translated")
 
 
 class ProjectSentenceSerializer(serializers.ModelSerializer):
-    sentences = SentenceOwnFieldsSerializer(
+    sentences = SentenceForeignSerializer(
         many=True, read_only=True, source="sentence_set"
     )
     target_lang = serializers.CharField(source="get_target_lang_display")

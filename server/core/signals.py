@@ -10,5 +10,5 @@ def add_sentences(sender, instance, created, **kwargs):
     if not created:
         return
 
-    l = getSplittedSentences(instance)
-    Sentence.objects.bulk_create(l)
+    sentences = getSplittedSentences(instance)
+    Sentence.objects.bulk_create(sentences)
