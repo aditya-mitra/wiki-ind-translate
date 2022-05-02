@@ -6,16 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0002_sentence_order'),
+        ("core", "0002_sentence_order"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='sentence',
-            options={'ordering': ['order']},
+            name="sentence",
+            options={"ordering": ["order"]},
         ),
         migrations.AlterUniqueTogether(
-            name='project',
-            unique_together={('wiki_title', 'target_lang')},
+            name="project",
+            unique_together={("wiki_title", "target_lang")},
         ),
     ]

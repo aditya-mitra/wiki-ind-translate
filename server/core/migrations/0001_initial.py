@@ -8,25 +8,65 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Project',
+            name="Project",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('wiki_title', models.CharField(max_length=256)),
-                ('target_lang', models.CharField(choices=[('bn', 'Bengali'), ('gu', 'Gujarati'), ('hi', 'Hindi'), ('kn', 'Kannada'), ('ml', 'Malayalam'), ('mr', 'Marathi'), ('ne', 'Nepali'), ('or', 'Oriya'), ('pa', 'Panjabi'), ('si', 'Sinhala'), ('ta', 'Tamil'), ('te', 'Telugu'), ('ur', 'Urdu')], max_length=2)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("wiki_title", models.CharField(max_length=256)),
+                (
+                    "target_lang",
+                    models.CharField(
+                        choices=[
+                            ("bn", "Bengali"),
+                            ("gu", "Gujarati"),
+                            ("hi", "Hindi"),
+                            ("kn", "Kannada"),
+                            ("ml", "Malayalam"),
+                            ("mr", "Marathi"),
+                            ("ne", "Nepali"),
+                            ("or", "Oriya"),
+                            ("pa", "Panjabi"),
+                            ("si", "Sinhala"),
+                            ("ta", "Tamil"),
+                            ("te", "Telugu"),
+                            ("ur", "Urdu"),
+                        ],
+                        max_length=2,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Sentence',
+            name="Sentence",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('original', models.TextField()),
-                ('translated', models.TextField()),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.project')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("original", models.TextField()),
+                ("translated", models.TextField()),
+                (
+                    "project",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="core.project"
+                    ),
+                ),
             ],
         ),
     ]
