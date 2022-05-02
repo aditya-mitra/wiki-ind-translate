@@ -4,6 +4,8 @@ from core.models import Sentence, Project
 
 
 class ProjectSerializer(serializers.ModelSerializer):
+    target_lang = serializers.CharField(source='get_target_lang_display')
+    
     class Meta:
         model = Project
         fields = ("wiki_title", "target_lang")
@@ -24,6 +26,7 @@ class ProjectSentenceSerializer(serializers.ModelSerializer):
     sentences = SentenceOwnFieldsSerializer(
         many=True, read_only=True, source="sentence_set"
     )
+    target_lang = serializers.CharField(source='get_target_lang_display')
 
     class Meta:
         model = Project

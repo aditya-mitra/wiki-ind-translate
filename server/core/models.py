@@ -23,9 +23,16 @@ class Project(models.Model):
         blank=False, max_length=2, choices=TARGET_LANG_CHOICES
     )
 
+    class Meta:
+        unique_together = ["wiki_title", "target_lang"]
+    
+
 
 class Sentence(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     original = models.TextField()
     translated = models.TextField()
     order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ["order"]
