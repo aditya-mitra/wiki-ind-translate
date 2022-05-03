@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 import { languageSelections } from "../../utils/language-choices";
 import { showErrorNotification } from "../../utils/show-notification";
+import { clientRoutes } from "../../utils/client-routes";
 
 export function CreateNewProject({ noShadow, noPadding }) {
 	const navigate = useNavigate();
@@ -34,7 +35,7 @@ export function CreateNewProject({ noShadow, noPadding }) {
 
 	useEffect(() => {
 		if (apiData) {
-			navigate("/projects");
+			navigate(clientRoutes.indivProject + "/" + apiData.id);
 		}
 	}, [apiData, navigate]);
 
