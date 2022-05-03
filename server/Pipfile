@@ -9,6 +9,7 @@ djangorestframework = "*"
 wikipedia-api = "*"
 pysbd = "*"
 django-cors-headers = "*"
+uvicorn = "*"
 
 [dev-packages]
 black = "*"
