@@ -61,7 +61,7 @@ export function CreateNewProject({ noShadow, noPadding }) {
 				<InputWrapper
 					id="wiki-title-input"
 					required
-					label="Wiki Title"
+					label="Wikipedia Article Title"
 					description="Please enter a valid Wikipedia Article Title."
 				>
 					<Input
