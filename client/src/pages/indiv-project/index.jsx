@@ -76,9 +76,12 @@ export function IndivProject() {
 		return <BarLoader />;
 	}
 
-	const [{ translationError }, patchTranslation] = useAxios("/sentences/id", {
-		manual: true,
-	});
+	const [{ error: translationError }, patchTranslation] = useAxios(
+		"/sentences/id",
+		{
+			manual: true,
+		}
+	);
 
 	if (translationError) {
 		showErrorNotification(translationError);

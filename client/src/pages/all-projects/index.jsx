@@ -4,10 +4,7 @@ import {
 	Stack,
 	Button,
 	Grid,
-	Center,
-	List,
 	Badge,
-	Group,
 	createStyles,
 } from "@mantine/core";
 import useAxios from "axios-hooks";
@@ -16,7 +13,7 @@ import { Link } from "react-router-dom";
 import { clientRoutes } from "../../utils/client-routes";
 import { BarLoader } from "../../components/loader";
 import { showErrorNotification } from "../../utils/show-notification";
-import { languageSelections } from "../../utils/language-choices";
+import { languageLongForms } from "../../utils/language-choices";
 
 const useStyles = createStyles((theme) => ({
 	centerItem: {
@@ -60,13 +57,9 @@ export function AllProjects() {
 								<Badge
 									size={"lg"}
 									fullWidth
-									leftSection={
-										<Text>
-											{languageSelections[target_lang]}
-										</Text>
-									}
+									leftSection={<Text>{target_lang}</Text>}
 								>
-									{target_lang}
+									{languageLongForms[target_lang]}
 								</Badge>
 							</Grid.Col>
 							<Grid.Col span={4} className={classes.centerItem}>

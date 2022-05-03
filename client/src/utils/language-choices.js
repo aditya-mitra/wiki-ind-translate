@@ -29,3 +29,19 @@ export const languageSelections = {
 	Telugu: "te",
 	Urdu: "ur",
 };
+
+export const languageLongForms = {
+	bn: "Bengali",
+	gu: "Gujarati",
+	hi: "Hindi",
+	kn: "Kannada",
+	ml: "Malayalam",
+	mr: "Marathi",
+	ne: "Nepali",
+	or: "Oriya",
+	pa: "Panjabi",
+	si: "Sinhala",
+	ta: "Tamil",
+	te: "Telugu",
+	ur: "Urdu",
+};

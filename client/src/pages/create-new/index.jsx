@@ -1,32 +1,53 @@
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { useForm } from "@mantine/hooks";
 import {
 	Group,
 	Button,
 	Paper,
-	Text,
 	InputWrapper,
 	Input,
 	LoadingOverlay,
 	useMantineTheme,
 	NativeSelect,
 } from "@mantine/core";
+import useAxios from "axios-hooks";
+import { useNavigate } from "react-router-dom";
 
 import { languageSelections } from "../../utils/language-choices";
+import { showErrorNotification } from "../../utils/show-notification";
 
 export function CreateNewProject({ noShadow, noPadding }) {
+	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 	const theme = useMantineTheme();
 
+	const [{ data: apiData, error: apiError }, postApiData] = useAxios(
+		"/projects",
+		{ manual: true }
+	);
+
+	useEffect(() => {
+		if (apiError) {
+			showErrorNotification(apiError);
+		}
+	}, [apiError]);
+
+	useEffect(() => {
+		if (apiData) {
+			navigate("/projects");
+		}
+	}, [apiData, navigate]);
+
 	const form = useForm({
 		initialValues: {
-			wikiTitle: "",
-			targetLang: "",
+			wiki_title: "",
+			target_lang: "",
 		},
 
 		validationRules: {
-			wikiTitle: (value) => value.length > 0,
-			targetLang: (value) => value.length > 0,
+			wiki_title: (value) => value.length > 0,
+			target_lang: (value) =>
+				Object.keys(languageSelections).some((lng) => lng === value),
 		},
 	});
 
@@ -35,12 +56,14 @@ export function CreateNewProject({ noShadow, noPadding }) {
 			return;
 		}
 
-		console.log(form.values);
-
 		setLoading(true);
-		setTimeout(() => {
-			setLoading(false);
-		}, 3000);
+
+		const data = {
+			...form.values,
+			target_lang: languageSelections[form.values.target_lang],
+		};
+
+		postApiData({ method: "POST", data });
 	};
 
 	return (
@@ -67,7 +90,7 @@ export function CreateNewProject({ noShadow, noPadding }) {
 					<Input
 						id="wiki-title-input"
 						placeholder="Boat"
-						{...form.getInputProps("wikiTitle")}
+						{...form.getInputProps("wiki_title")}
 					/>
 				</InputWrapper>
 
@@ -80,13 +103,13 @@ export function CreateNewProject({ noShadow, noPadding }) {
 					<NativeSelect
 						data={Object.keys(languageSelections)}
 						placeholder="Pick One"
-						{...form.getInputProps("targetLang")}
+						{...form.getInputProps("target_lang")}
 					/>
 				</InputWrapper>
 
 				<Group position="apart" mt="xl">
 					<Button color="blue" type="submit">
-						Create!
+						Create
 					</Button>
 				</Group>
 			</form>
