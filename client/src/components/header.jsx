@@ -2,9 +2,8 @@ import {
 	Anchor,
 	Text,
 	Header,
-	Divider,
+	Switch,
 	Group,
-	Button,
 	useMantineColorScheme,
 } from "@mantine/core";
 import { Link } from "react-router-dom";
@@ -48,10 +47,13 @@ export function NavHeader() {
 						alignItems: "flex-start",
 					}}
 				>
-					<Button onClick={() => toggleColorScheme()}>
-						Change to {colorScheme === "dark" ? "light" : "dark"}{" "}
-						mode
-					</Button>
+					<Switch
+						onLabel="ON"
+						offLabel="OFF"
+						checked={colorScheme === "dark"}
+						onChange={() => toggleColorScheme()}
+						size={"xl"}
+					/>
 				</div>
 			</div>
 		</Header>
