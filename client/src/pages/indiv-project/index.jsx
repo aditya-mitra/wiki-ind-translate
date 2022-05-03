@@ -1,10 +1,18 @@
 import { Button, Divider, Grid, Paper, Text, Textarea } from "@mantine/core";
+import useAxios from "axios-hooks";
 import { useParams } from "react-router-dom";
 
+import { BarLoader } from "../../components/loader";
+
 export function IndivProject() {
-	const translations = ["a", "b"];
 	const { projectId } = useParams();
-	console.log("project id =", projectId);
+	const [{ data, loading }] = useAxios(`/projects/${projectId}`);
+
+	if (loading) {
+		return <BarLoader />;
+	}
+
+	console.log("data is ", data);
 
 	return (
 		<Grid columns={2}>

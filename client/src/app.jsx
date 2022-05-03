@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
 	MantineProvider,
@@ -14,8 +14,11 @@ import { NavHeader } from "./components/header";
 import { CreateNewProject } from "./pages/create-new";
 import { IndivProject } from "./pages/indiv-project";
 import { NotFound } from "./pages/not-found";
+import { configureAxios } from "./utils/api-config";
 
 export function App() {
+	configureAxios();
+
 	const [colorScheme, setColorScheme] = useState("light");
 	const changeColorScheme = () =>
 		colorScheme == "light"

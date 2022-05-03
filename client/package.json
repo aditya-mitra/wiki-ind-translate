@@ -10,6 +10,8 @@
   "dependencies": {
     "@mantine/core": "^4.2.2",
     "@mantine/hooks": "^4.2.2",
+    "axios": "^0.27.2",
+    "axios-hooks": "^3.0.2",
     "preact": "^10.5.15",
     "react-router-dom": "^6.3.0"
   },
