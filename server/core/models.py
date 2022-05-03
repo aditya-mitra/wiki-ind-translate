@@ -31,7 +31,3 @@ class Sentence(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, editable=False)
     original = models.TextField(editable=False)
     translated = models.TextField()
-    order = models.IntegerField(default=0)
-
-    class Meta:
-        ordering = ["order"]
