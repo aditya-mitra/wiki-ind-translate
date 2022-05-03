@@ -6,9 +6,9 @@ import { clientRoutes } from "../../utils/client-routes";
 import { BarLoader } from "../../components/loader";
 
 export function AllProjects() {
-	const [{ data: projects, loading }] = useAxios("/projects");
+	const [{ data: projects, loading, error }] = useAxios("/projects");
 
-	if (loading) {
+	if (loading || error) {
 		return <BarLoader />;
 	}
 

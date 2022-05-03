@@ -49,11 +49,6 @@ export function App() {
 							},
 						})}
 						fixed
-						footer={
-							<Footer height={60} p="md">
-								Application footer
-							</Footer>
-						}
 						header={<NavHeader />}
 					>
 						<Routes>
