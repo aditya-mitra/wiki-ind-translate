@@ -1,11 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { MantineProvider, AppShell, Header, Footer } from "@mantine/core";
+import { MantineProvider, AppShell, Footer } from "@mantine/core";
 
 import { Home } from "./pages/home";
 import { clientRoutes } from "./utils/client-routes";
 import { AllProjects } from "./pages/all-projects";
-import { Heading } from "./components/heading";
+import { NavHeader } from "./components/heading";
 import { CreateNewProject } from "./pages/create-new";
+import { IndivProject } from "./pages/indiv-project";
+import { NotFound } from "./pages/not-found";
 
 export function App() {
 	return (
@@ -33,11 +35,7 @@ export function App() {
 							Application footer
 						</Footer>
 					}
-					header={
-						<Header height={70} p="md">
-							<Heading />
-						</Header>
-					}
+					header={<NavHeader />}
 				>
 					<Routes>
 						<Route path={clientRoutes.home} element={<Home />} />
@@ -49,6 +47,11 @@ export function App() {
 							path={clientRoutes.createNew}
 							element={<CreateNewProject />}
 						/>
+						<Route
+							path={clientRoutes.indivProject + "/:projectId"}
+							element={<IndivProject />}
+						/>
+						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</AppShell>
 			</BrowserRouter>
