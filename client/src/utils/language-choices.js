@@ -1,0 +1,31 @@
+export const availableLanguages = [
+	"bn",
+	"gu",
+	"hi",
+	"kn",
+	"ml",
+	"mr",
+	"ne",
+	"or",
+	"pa",
+	"si",
+	"ta",
+	"te",
+	"ur",
+];
+
+export const languageSelections = {
+	Bengali: "bn",
+	Gujarati: "gu",
+	Hindi: "hi",
+	Kannada: "kn",
+	Malayalam: "ml",
+	Marathi: "mr",
+	Nepali: "ne",
+	Oriya: "or",
+	Panjabi: "pa",
+	Sinhala: "si",
+	Tamil: "ta",
+	Telugu: "te",
+	Urdu: "ur",
+};
