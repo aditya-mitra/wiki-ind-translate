@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 
 import { clientRoutes } from "../../utils/client-routes";
 import { BarLoader } from "../../components/loader";
+import { showErrorNotification } from "../../utils/show-notification";
 
 export function AllProjects() {
 	const [{ data: projects, loading, error }] = useAxios("/projects");
 
 	if (loading || error) {
+		if (error) {
+			showErrorNotification(error);
+		}
 		return <BarLoader />;
 	}
 

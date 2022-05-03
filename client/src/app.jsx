@@ -1,11 +1,7 @@
-import { useState, useEffect } from "preact/hooks";
+import { useState } from "preact/hooks";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import {
-	MantineProvider,
-	AppShell,
-	Footer,
-	ColorSchemeProvider,
-} from "@mantine/core";
+import { MantineProvider, AppShell, ColorSchemeProvider } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 
 import { Home } from "./pages/home";
 import { clientRoutes } from "./utils/client-routes";
@@ -38,40 +34,45 @@ export function App() {
 					fontFamily: "Greycliff CF, sans-serif",
 				}}
 			>
-				<BrowserRouter>
-					<AppShell
-						styles={(theme) => ({
-							main: {
-								background:
-									theme.colorScheme === "dark"
-										? theme.colors.dark[8]
-										: theme.colors.gray[0],
-							},
-						})}
-						fixed
-						header={<NavHeader />}
-					>
-						<Routes>
-							<Route
-								path={clientRoutes.home}
-								element={<Home />}
-							/>
-							<Route
-								path={clientRoutes.allProjects}
-								element={<AllProjects />}
-							/>
-							<Route
-								path={clientRoutes.createNew}
-								element={<CreateNewProject />}
-							/>
-							<Route
-								path={clientRoutes.indivProject + "/:projectId"}
-								element={<IndivProject />}
-							/>
-							<Route path="*" element={<NotFound />} />
-						</Routes>
-					</AppShell>
-				</BrowserRouter>
+				<NotificationsProvider position={"top-right"}>
+					<BrowserRouter>
+						<AppShell
+							styles={(theme) => ({
+								main: {
+									background:
+										theme.colorScheme === "dark"
+											? theme.colors.dark[8]
+											: theme.colors.gray[0],
+								},
+							})}
+							fixed
+							header={<NavHeader />}
+						>
+							<Routes>
+								<Route
+									path={clientRoutes.home}
+									element={<Home />}
+								/>
+								<Route
+									path={clientRoutes.allProjects}
+									element={<AllProjects />}
+								/>
+								<Route
+									path={clientRoutes.createNew}
+									element={<CreateNewProject />}
+								/>
+								<Route
+									path={
+										clientRoutes.indivProject +
+										"/:projectId"
+									}
+									element={<IndivProject />}
+								/>
+								<Route path="*" element={<NotFound />} />
+							</Routes>
+						</AppShell>
+					</BrowserRouter>
+				</NotificationsProvider>
 			</MantineProvider>
 		</ColorSchemeProvider>
 	);

@@ -11,10 +11,11 @@ import {
 	useMantineTheme,
 } from "@mantine/core";
 import useAxios from "axios-hooks";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRef } from "preact/hooks";
 
 import { BarLoader } from "../../components/loader";
+import { showErrorNotification } from "../../utils/show-notification";
 
 function Sentence({ sentenceData, updateTranslation }) {
 	const ref = useRef();
@@ -57,6 +58,7 @@ function Sentence({ sentenceData, updateTranslation }) {
 }
 
 export function IndivProject() {
+	const navigate = useNavigate();
 	const theme = useMantineTheme();
 	const { projectId } = useParams();
 	const [
@@ -65,12 +67,22 @@ export function IndivProject() {
 	] = useAxios(`/projects/${projectId}`);
 
 	if (loading || projectError) {
+		if (projectError && projectError.response.status === 404) {
+			navigate("/404");
+			return;
+		} else if (projectError) {
+			showErrorNotification(projectError);
+		}
 		return <BarLoader />;
 	}
 
 	const [{ translationError }, patchTranslation] = useAxios("/sentences/id", {
 		manual: true,
 	});
+
+	if (translationError) {
+		showErrorNotification(translationError);
+	}
 
 	const updateTranslation = (sentenceId, translated) => {
 		patchTranslation({
