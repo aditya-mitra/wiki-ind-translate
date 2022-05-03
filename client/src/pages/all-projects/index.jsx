@@ -44,6 +44,19 @@ export function AllProjects() {
 				height: 300,
 			})}
 		>
+			{(!projects || projects.length === 0) && (
+				<Paper
+					shadow="md"
+					radius="md"
+					p="md"
+					withBorder
+					sx={(theme) => ({ backgroundColor: theme.colors.grape })}
+				>
+					<Text weight={900}>
+						Well, it's empty. Try adding some new projects.
+					</Text>
+				</Paper>
+			)}
 			{Array.isArray(projects) &&
 				projects.map(({ id, wiki_title, target_lang }) => (
 					<Paper shadow="md" radius="md" p="md" withBorder key={id}>
