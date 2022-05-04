@@ -10,7 +10,7 @@ export function BarLoader() {
 				height: "100%",
 			}}
 		>
-			<Loader variant="bars" size={100} />;
+			<Loader variant="bars" size={100} />
 		</div>
 	);
 }

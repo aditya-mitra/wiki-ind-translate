@@ -1,4 +1,5 @@
 import { Fragment } from "preact";
+import { useState } from "preact/hooks";
 import {
 	Button,
 	Badge,
@@ -12,13 +13,15 @@ import {
 } from "@mantine/core";
 import useAxios from "axios-hooks";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRef } from "preact/hooks";
+import { ReactTransliterate } from "react-transliterate";
+import "react-transliterate/dist/index.css";
 
 import { BarLoader } from "../../components/loader";
 import { showErrorNotification } from "../../utils/show-notification";
+import { languageSelections } from "../../utils/language-choices";
 
-function Sentence({ sentenceData, updateTranslation }) {
-	const ref = useRef();
+function Sentence({ sentenceData, updateTranslation, lang }) {
+	const [translated, setTranslated] = useState(sentenceData.translated);
 
 	return (
 		<Fragment key={sentenceData.id}>
@@ -31,12 +34,18 @@ function Sentence({ sentenceData, updateTranslation }) {
 				</Paper>
 			</Grid.Col>
 			<Grid.Col span={1}>
-				<Textarea
-					placeholder="Enter the translation here ..."
-					radius="md"
-					autosize
-					defaultValue={sentenceData.translated}
-					ref={ref}
+				<ReactTransliterate
+					renderComponent={(props) => (
+						<Textarea
+							placeholder="Enter the translation here ..."
+							radius="md"
+							autosize
+							{...props}
+						/>
+					)}
+					value={translated}
+					onChangeText={(text) => setTranslated(text)}
+					lang={lang}
 				/>
 			</Grid.Col>
 			<Grid.Col span={2}>
@@ -44,7 +53,7 @@ function Sentence({ sentenceData, updateTranslation }) {
 					fullWidth
 					variant="outline"
 					onClick={() =>
-						updateTranslation(sentenceData.id, ref.current.value)
+						updateTranslation(sentenceData.id, translated)
 					}
 				>
 					Add Translation
@@ -88,6 +97,7 @@ export function IndivProject() {
 	}
 
 	const updateTranslation = (sentenceId, translated) => {
+		console.log(sentenceId, "-- and --", translated);
 		patchTranslation({
 			url: "/sentences/" + sentenceId,
 			method: "PATCH",
@@ -123,11 +133,31 @@ export function IndivProject() {
 						Translation
 					</Text>
 				</Grid.Col>
+				{(!projectData.sentences ||
+					projectData.sentences.length === 0) && (
+					<Grid.Col>
+						<Paper
+							shadow="md"
+							radius="md"
+							p="md"
+							withBorder
+							sx={(theme) => ({
+								backgroundColor: theme.colors.grape,
+							})}
+						>
+							<Text weight={900}>
+								No sentences found. It seems you have entered an
+								invalid Wikipedia Topic.
+							</Text>
+						</Paper>
+					</Grid.Col>
+				)}
 				{Array.isArray(projectData.sentences) &&
 					projectData.sentences.map((sentence) => (
 						<Sentence
 							sentenceData={sentence}
 							updateTranslation={updateTranslation}
+							lang={languageSelections[projectData.target_lang]}
 						/>
 					))}
 			</Grid>

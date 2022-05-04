@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild":"cd dist/ && echo \"/*    /index.html   200\" > _redirects && cd ../",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -14,7 +15,8 @@
     "axios": "^0.27.2",
     "axios-hooks": "^3.0.2",
     "preact": "^10.5.15",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "react-transliterate": "^1.1.9"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.1.5",
