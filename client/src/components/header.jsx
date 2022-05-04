@@ -27,11 +27,11 @@ export function NavHeader() {
 						align="center"
 						variant="gradient"
 						gradient={{ from: "indigo", to: "cyan", deg: 45 }}
-						size="xl"
+						size={"xl"}
 						weight={700}
 						style={{ fontFamily: "Greycliff CF, sans-serif" }}
 					>
-						Wiki Indic Translations
+						Wiki Ind Translate
 					</Text>
 					<Anchor component={Link} to={clientRoutes.createNew}>
 						Create New
@@ -40,21 +40,29 @@ export function NavHeader() {
 						All Projects
 					</Anchor>
 				</Group>
-				<div
-					style={{
-						display: "flex",
-						justifyContent: "space-between",
-						alignItems: "flex-start",
-					}}
-				>
-					<Switch
-						onLabel="ON"
-						offLabel="OFF"
-						checked={colorScheme === "dark"}
-						onChange={() => toggleColorScheme()}
-						size={"xl"}
-					/>
-				</div>
+				<Group>
+					<Anchor
+						href="https://github.com/aditya-mitra/wiki-ind-translate/"
+						target="_blank"
+					>
+						GitHub
+					</Anchor>
+					<div
+						style={{
+							display: "flex",
+							justifyContent: "space-between",
+							alignItems: "flex-start",
+						}}
+					>
+						<Switch
+							onLabel="ON"
+							offLabel="OFF"
+							checked={colorScheme === "dark"}
+							onChange={() => toggleColorScheme()}
+							size={"xl"}
+						/>
+					</div>
+				</Group>
 			</div>
 		</Header>
 	);

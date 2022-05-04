@@ -36,7 +36,7 @@ export function Home() {
 
 	return (
 		<Container size={1100} className={classes.inner}>
-			<Title>Wikipedia Indic Translations</Title>
+			<Title>Wikipedia Indian Translations</Title>
 			<Group className={classes.controls}>
 				<Button
 					component={Link}
