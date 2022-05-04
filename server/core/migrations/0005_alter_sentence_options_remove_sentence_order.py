@@ -6,16 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0004_alter_sentence_original_alter_sentence_project'),
+        ("core", "0004_alter_sentence_original_alter_sentence_project"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='sentence',
+            name="sentence",
             options={},
         ),
         migrations.RemoveField(
-            model_name='sentence',
-            name='order',
+            model_name="sentence",
+            name="order",
         ),
     ]
