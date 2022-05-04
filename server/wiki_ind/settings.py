@@ -27,7 +27,7 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", ".herokuapp.com"]
 
@@ -145,4 +145,4 @@ if os.getenv("DJANGO_PRODUCTION"):
         "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",)
     }
 
-    DEBUG = True
+    DEBUG = False
