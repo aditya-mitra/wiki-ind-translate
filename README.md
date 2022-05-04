@@ -6,6 +6,18 @@
 
 A web app to track and store translations of Wikipedia Article Summaries in Indian languages.
 
+## Demo
+
+**Frontend:** https://wiki-ind-translate.netlify.app/
+
+**Backend:** https://wiki-ind-translate.herokuapp.com/api/v1
+
+_Note: As `SQLite3` is being used as the primary database in Heroku, the saved data will be lost after a while (when the app goes to sleep)_
+
+## Working
+
+![illustration_1](./screenshots/illustrate_1.svg)
+
 ## Screenshots
 
 ![home page](./screenshots/1.png)
@@ -17,14 +29,6 @@ A web app to track and store translations of Wikipedia Article Summaries in Indi
 ![all projects page](./screenshots/4.png)
 
 ![dark mode](./screenshots/5.png)
-
-## Demo
-
-**Frontend:** https://wiki-ind-translate.netlify.app/
-
-**Backend:** https://wiki-ind-translate.herokuapp.com/api/v1
-
-_Note: As `SQLite3` is being used as the primary database in Heroku, the saved data will be lost after a while (when the app goes to sleep)_
 
 ## Run Locally
 
