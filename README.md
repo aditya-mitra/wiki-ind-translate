@@ -16,7 +16,9 @@ _Note: As `SQLite3` is being used as the primary database in Heroku, the saved d
 
 ## Working
 
-![illustration_1](./screenshots/illustrate_1.svg)
+![illustration_1](./screenshots/illustrate_1.png)
+
+![illustration_2](./screenshots/illustrate_2.png)
 
 ## Screenshots
 
