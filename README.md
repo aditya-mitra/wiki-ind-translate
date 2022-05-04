@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="./client/src/assets/favicon.png" alt="project logo">
+</p>
 
 # Wiki Ind Translate
 
